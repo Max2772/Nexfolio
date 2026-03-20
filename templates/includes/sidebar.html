@@ -63,18 +63,18 @@
   </nav>
 
   {# User block #}
-  <div class="sidebar-footer">
-    <div class="sidebar-user">
-      <div class="sidebar-avatar">
-        {{ request.user.username|first|upper|default:"M" }}
-      </div>
-      <div class="sidebar-user-info">
-        <div class="sidebar-user-name">
-          {{ request.user.get_full_name|default:request.user.username|default:"Max B." }}
-        </div>
-        <div class="sidebar-user-plan">Pro Plan</div>
-      </div>
+    <div class="sidebar-footer">
+        <a href="{% url 'users:profile' %}" class="sidebar-user">
+            <div class="sidebar-avatar">
+                {{ request.user.username|first|upper|default:"M" }}
+            </div>
+            <div class="sidebar-user-info">
+                <div class="sidebar-user-name">
+                    {{ request.user.get_full_name|default:request.user.username|default:"Max B." }}
+                </div>
+                <div class="sidebar-user-plan">Pro Plan</div>
+            </div>
+        </a>
     </div>
-  </div>
 
 </aside>
