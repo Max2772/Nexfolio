@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create account — InvestRadar</title>
+<title>Create account — NexFolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 
@@ -917,9 +917,9 @@ body::before {
 <div class="auth-shell">
   <div class="auth-brand">
     <div class="auth-brand-grid"></div>
-    <a href="/static" class="auth-logo">
+    <a href="{% url 'main:main' %}" class="auth-logo">
       <div class="auth-logo-icon">📈</div>
-      <div class="auth-logo-text">Invest<span>Radar</span></div>
+      <div class="auth-logo-text">Nex<span>Folio</span></div>
     </a>
     <div class="auth-brand-body">
       <div class="auth-brand-eyebrow">Free forever · No credit card</div>
@@ -930,15 +930,6 @@ body::before {
         <div class="auth-feature"><div class="auth-feature-dot"></div>Up to 10 price alerts per user</div>
         <div class="auth-feature"><div class="auth-feature-dot"></div>Interactive charts: 1W / 1M / 3M / 1Y</div>
         <div class="auth-feature"><div class="auth-feature-dot"></div>Open source, MIT license</div>
-      </div>
-      <div class="auth-preview">
-        <div class="auth-preview-header">📈 Platform stats</div>
-        <div style="display:flex;flex-direction:column;gap:12px;margin-top:4px;">
-          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;color:var(--text-muted)">Registered users</span><span style="font-family:var(--font-mono);font-size:13px;">2,400+</span></div>
-          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;color:var(--text-muted)">Assets tracked</span><span style="font-family:var(--font-mono);font-size:13px;">18,000+</span></div>
-          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;color:var(--text-muted)">Alerts fired today</span><span style="font-family:var(--font-mono);font-size:13px;color:var(--green)">142</span></div>
-          <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;color:var(--text-muted)">GitHub stars</span><span style="font-family:var(--font-mono);font-size:13px;">⭐ 320</span></div>
-        </div>
       </div>
     </div>
     <div class="auth-social-proof">
@@ -953,7 +944,7 @@ body::before {
   <div class="auth-form-panel">
     <div class="auth-form-wrap">
       <div class="auth-form-title">Create account</div>
-      <div class="auth-form-subtitle">Already have one? <a href="login.html">Log in →</a></div>
+      <div class="auth-form-subtitle">Already have one? <a href="{% url 'user:login' %}">Log in →</a></div>
 
       <div class="oauth-row" style="margin-bottom:6px;">
         <button class="btn-oauth"><span class="btn-oauth-icon">🔵</span> Google</button>

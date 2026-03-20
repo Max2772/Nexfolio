@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Log in — InvestRadar</title>
+<title>NexFolio — Log in</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 
@@ -917,44 +917,19 @@ body::before {
 <div class="auth-shell">
   <div class="auth-brand">
     <div class="auth-brand-grid"></div>
-    <a href="/static" class="auth-logo">
+    <a href="{% url 'main:main' %}" class="auth-logo">
       <div class="auth-logo-icon">📈</div>
-      <div class="auth-logo-text">Invest<span>Radar</span></div>
+      <div class="auth-logo-text">Nex<span>Folio</span></div>
     </a>
     <div class="auth-brand-body">
       <div class="auth-brand-eyebrow">Welcome back</div>
       <h1 class="auth-brand-headline">Your portfolio<br>is <em>waiting</em><br>for you.</h1>
       <p class="auth-brand-sub">Log in to check your holdings, review alerts, and track real-time prices across stocks, crypto, and Steam.</p>
       <div class="auth-features">
-        <div class="auth-feature"><div class="auth-feature-dot"></div>Real-time prices from InvestAPI</div>
+          <div class="auth-feature"><div class="auth-feature-dot"></div>Assets from 3 different markets</div>
+          <div class="auth-feature"><div class="auth-feature-dot"></div>Real-time prices from InvestAPI</div>
         <div class="auth-feature"><div class="auth-feature-dot"></div>Price alerts checked every 5 minutes</div>
-        <div class="auth-feature"><div class="auth-feature-dot"></div>Full transaction history, always saved</div>
-      </div>
-      <div class="auth-preview">
-        <div class="auth-preview-header">📊 Your portfolio — last snapshot</div>
-        <div class="auth-preview-rows">
-          <div class="auth-preview-row">
-            <div class="auth-preview-left">
-              <div class="auth-preview-icon" style="background:#1a2e40;color:#4fc3f7">N</div>
-              <div><div class="auth-preview-ticker">NVDA</div><div class="auth-preview-type">STOCK</div></div>
-            </div>
-            <div class="auth-preview-right"><div class="auth-preview-price">$874.15</div><div class="auth-preview-pnl up">▲ +22.4%</div></div>
-          </div>
-          <div class="auth-preview-row">
-            <div class="auth-preview-left">
-              <div class="auth-preview-icon" style="background:#1a2a1a;color:#00e676">₿</div>
-              <div><div class="auth-preview-ticker">BTC</div><div class="auth-preview-type">CRYPTO</div></div>
-            </div>
-            <div class="auth-preview-right"><div class="auth-preview-price">$83,200</div><div class="auth-preview-pnl up">▲ +8.1%</div></div>
-          </div>
-          <div class="auth-preview-row">
-            <div class="auth-preview-left">
-              <div class="auth-preview-icon" style="background:#1a1a2e;color:#7c83ff">Ξ</div>
-              <div><div class="auth-preview-ticker">ETH</div><div class="auth-preview-type">CRYPTO</div></div>
-            </div>
-            <div class="auth-preview-right"><div class="auth-preview-price">$2,112.49</div><div class="auth-preview-pnl down">▼ −33.9%</div></div>
-          </div>
-        </div>
+        <div class="auth-feature"><div class="auth-feature-dot"></div>Full transaction history</div>
       </div>
     </div>
     <div class="auth-social-proof">
@@ -970,7 +945,7 @@ body::before {
   <div class="auth-form-panel">
     <div class="auth-form-wrap">
       <div class="auth-form-title">Welcome back</div>
-      <div class="auth-form-subtitle">No account? <a href="registration.html">Create one for free →</a></div>
+      <div class="auth-form-subtitle">No account? <a href="{% url 'users:registration' %}">Create one for free →</a></div>
 
       <form class="auth-form" novalidate>
         <div class="form-group">

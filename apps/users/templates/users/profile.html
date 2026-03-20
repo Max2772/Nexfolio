@@ -1,15 +1,13 @@
 {% extends "base_app.html" %}
 {% load static %}
 
-{% block title %}Profile — {{ request.user.username|default:"Max B." }} · InvestRadar{% endblock %}
+{% block title %}Profile — {{ request.user.username|default:"Max B." }} · Folio{% endblock %}
 
 {% block page_css %}
   <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
-{# ──────────────────────────────────────────────────────────────────────
-   TOPBAR
-   ────────────────────────────────────────────────────────────────────── #}
+
 {% block page_title %}Profile{% endblock %}
 
 {% block page_meta %}
@@ -21,9 +19,7 @@
   <button class="btn btn-primary" form="formOverview" type="submit">Save changes</button>
 {% endblock %}
 
-{# ──────────────────────────────────────────────────────────────────────
-   CONTENT
-   ────────────────────────────────────────────────────────────────────── #}
+
 {% block content %}
 
 {# ── Profile header ── #}
@@ -92,10 +88,6 @@
 
 
 {# ── Tabs ── #}
-{#
-  Переключение вкладок: profile.js → initProfileTabs()
-  Активная вкладка читается из URL hash (#overview, #security, ...)
-#}
 <div class="profile-tabs">
   <div class="profile-tab active" data-tab="overview">
     <span class="profile-tab-icon">👤</span> Overview
@@ -112,9 +104,6 @@
 </div>
 
 
-{# ══════════════════════════════════════════════════════════════════════
-   TAB: OVERVIEW — личная информация + статы в aside
-   ══════════════════════════════════════════════════════════════════════ #}
 <div class="profile-panel active" id="panel-overview">
   <div class="profile-layout">
 
@@ -273,9 +262,6 @@
 </div>{# /panel-overview #}
 
 
-{# ══════════════════════════════════════════════════════════════════════
-   TAB: SECURITY — пароль, сессии, 2FA
-   ══════════════════════════════════════════════════════════════════════ #}
 <div class="profile-panel" id="panel-security">
 
   {# Смена пароля #}
@@ -396,9 +382,7 @@
 </div>{# /panel-security #}
 
 
-{# ══════════════════════════════════════════════════════════════════════
-   TAB: PREFERENCES — оповещения, отображение
-   ══════════════════════════════════════════════════════════════════════ #}
+
 <div class="profile-panel" id="panel-preferences">
 
   {# Настройки алертов #}
@@ -475,9 +459,6 @@
 </div>{# /panel-preferences #}
 
 
-{# ══════════════════════════════════════════════════════════════════════
-   TAB: ACTIVITY — история действий
-   ══════════════════════════════════════════════════════════════════════ #}
 <div class="profile-panel" id="panel-activity">
 
   <div class="settings-section">
