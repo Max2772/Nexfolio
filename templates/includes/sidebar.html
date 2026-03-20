@@ -11,13 +11,7 @@
 
     <div class="sidebar-nav-label">Main</div>
 
-    <a href="#"
-       class="sidebar-nav-item {% if active_nav == 'dashboard' %}active{% endif %}">
-      <span class="sidebar-nav-icon">⬛</span>
-      Dashboard
-    </a>
-
-    <a href="#"
+    <a href="{% url "portfolio:portfolio"  %}"
        class="sidebar-nav-item {% if active_nav == 'portfolio' %}active{% endif %}">
       <span class="sidebar-nav-icon">🗂</span>
       Portfolio
@@ -31,7 +25,7 @@
 
     <div class="sidebar-nav-label">Market</div>
 
-    <a href="#"
+    <a href="{% url "stocks:stocks"  %}"
        class="sidebar-nav-item {% if active_nav == 'stocks' %}active{% endif %}">
       <span class="sidebar-nav-icon">💹</span>
       Stocks
@@ -68,7 +62,7 @@
 
   </nav>
 
-  {# User pill #}
+  {# User block #}
   <div class="sidebar-footer">
     <div class="sidebar-user">
       <div class="sidebar-avatar">
@@ -80,7 +74,6 @@
         </div>
         <div class="sidebar-user-plan">Pro Plan</div>
       </div>
-      <a href="#" class="sidebar-settings-link">⚙</a>
     </div>
   </div>
 

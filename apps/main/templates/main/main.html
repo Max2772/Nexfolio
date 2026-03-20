@@ -5,12 +5,9 @@
 
 {# ── Стили страницы ── #}
 {% block page_css %}
-  <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% endblock %}
 
-{# ══════════════════════════════════════════════════════════════════════
-   CONTENT
-   ══════════════════════════════════════════════════════════════════════ #}
 {% block content %}
 
 {# ── Бегущая строка с ценами ── #}
@@ -156,27 +153,6 @@
     </div>
   </div>
 </section>
-
-
-{# ── Stats strip ── #}
-<div class="stats-strip">
-  <div class="stats-strip-item">
-    <div class="strip-val">3<span>+</span></div>
-    <div class="strip-label">Asset types in one place</div>
-  </div>
-  <div class="stats-strip-item">
-    <div class="strip-val">∞</div>
-    <div class="strip-label">Portfolio size, no limits</div>
-  </div>
-  <div class="stats-strip-item">
-    <div class="strip-val">5<span>m</span></div>
-    <div class="strip-label">Alert check interval</div>
-  </div>
-  <div class="stats-strip-item">
-    <div class="strip-val">100<span>%</span></div>
-    <div class="strip-label">Open source on GitHub</div>
-  </div>
-</div>
 
 
 {# ── Features ── #}
@@ -331,6 +307,6 @@
 
 {# ── JS ── #}
 {% block page_js %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-  <script src="{% static 'js/landing.js' %}"></script>
+  <script src="{% static 'js/chartjs/chart.umd.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
 {% endblock %}

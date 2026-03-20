@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}InvestRadar{% endblock %}</title>
+
+  {# ── Google Fonts (те же, что в base_app и base_public) ── #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+  {# ── Базовые стили (tokens → base → auth) ── #}
+  <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+
+</head>
+<body>
+
+  {#
+    auth-shell — двухколоночный layout:
+      .auth-brand      — левая брендовая панель
+      .auth-form-panel — правая панель с формой
+
+    Каждый дочерний шаблон определяет оба блока.
+  #}
+  <div class="auth-shell">
+
+    {# Левая панель — переопределяется в каждом шаблоне #}
+    <div class="auth-brand">
+      <div class="auth-brand-grid"></div>
+      {% block brand %}{% endblock %}
+    </div>
+
+    {# Правая панель с формой #}
+    <div class="auth-form-panel">
+      <div class="auth-form-wrap">
+        {% block form %}{% endblock %}
+      </div>
+    </div>
+
+  </div>
+
+  {# Базовый JS (initTabs и др.) #}
+  <script src="{% static 'js/base.js' %}"></script>
+
+  {# Страничный JS #}
+  {% block page_js %}{% endblock %}
+
+</body>
+</html>
