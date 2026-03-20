@@ -20,6 +20,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('apps.main.urls', namespace='main')),
+    path('', include('apps.portfolio.urls', namespace='portfolio')),
+    path('', include('apps.stocks.urls', namespace='stocks')),
+
 ]
 
 if settings.DEBUG:

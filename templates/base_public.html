@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}NexFolio{% endblock %}</title>
+
+  {# ── Google Fonts ── #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+  {# ── Base stylesheets ── #}
+  <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+  {# ── Page-specific CSS ── #}
+  {% block page_css %}{% endblock %}
+
+</head>
+<body>
+
+  {# ── Публичный navbar ── #}
+  <nav class="pub-nav">
+    <a href="/" class="pub-nav-logo">
+      <div class="pub-nav-logo-icon">📈</div>
+      <div class="pub-nav-logo-text">Nex<span>Folio</span></div>
+    </a>
+
+    <div class="pub-nav-links">
+      <a href="/features" class="pub-nav-link">Features</a>
+      <a href="/pricing"  class="pub-nav-link">Pricing</a>
+      <a href="/docs"     class="pub-nav-link">Docs</a>
+    </div>
+
+    <div class="pub-nav-actions">
+      <a href="/login"    class="btn btn-ghost">Log in</a>
+      <a href="/register" class="btn btn-primary">Get started →</a>
+    </div>
+  </nav>
+
+  {# ── Контент ── #}
+  <div class="pub-content">
+    {% block content %}{% endblock %}
+  </div>
+
+  {# ── Page-specific JS ── #}
+  {% block page_js %}{% endblock %}
+
+</body>
+</html>

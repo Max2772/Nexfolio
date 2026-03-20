@@ -1,0 +1,87 @@
+<aside class="sidebar">
+
+  {# Logo #}
+  <a href="/" class="sidebar-logo">
+    <div class="sidebar-logo-icon">📈</div>
+    <div class="sidebar-logo-text">Nex<span>Folio</span></div>
+  </a>
+
+  {# Navigation #}
+  <nav class="sidebar-nav">
+
+    <div class="sidebar-nav-label">Main</div>
+
+    <a href="#"
+       class="sidebar-nav-item {% if active_nav == 'dashboard' %}active{% endif %}">
+      <span class="sidebar-nav-icon">⬛</span>
+      Dashboard
+    </a>
+
+    <a href="#"
+       class="sidebar-nav-item {% if active_nav == 'portfolio' %}active{% endif %}">
+      <span class="sidebar-nav-icon">🗂</span>
+      Portfolio
+    </a>
+
+    <a href="#"
+       class="sidebar-nav-item {% if active_nav == 'analytics' %}active{% endif %}">
+      <span class="sidebar-nav-icon">📊</span>
+      Analytics
+    </a>
+
+    <div class="sidebar-nav-label">Market</div>
+
+    <a href="#"
+       class="sidebar-nav-item {% if active_nav == 'stocks' %}active{% endif %}">
+      <span class="sidebar-nav-icon">💹</span>
+      Stocks
+    </a>
+
+    <a href="#"
+       class="sidebar-nav-item {% if active_nav == 'crypto' %}active{% endif %}">
+      <span class="sidebar-nav-icon">⚡</span>
+      Crypto
+    </a>
+
+    <a href="#"
+       class="sidebar-nav-item {% if active_nav == 'steam' %}active{% endif %}">
+      <span class="sidebar-nav-icon">🎮</span>
+      Steam
+    </a>
+
+    <div class="sidebar-nav-label">Tools</div>
+
+    <a href="#"
+       class="sidebar-nav-item {% if active_nav == 'alerts' %}active{% endif %}">
+      <span class="sidebar-nav-icon">🔔</span>
+      Alerts
+      {% if alerts_count %}
+        <span class="sidebar-badge">{{ alerts_count }}</span>
+      {% endif %}
+    </a>
+
+    <a href="#"
+       class="sidebar-nav-item {% if active_nav == 'history' %}active{% endif %}">
+      <span class="sidebar-nav-icon">📜</span>
+      History
+    </a>
+
+  </nav>
+
+  {# User pill #}
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">
+        {{ request.user.username|first|upper|default:"M" }}
+      </div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name">
+          {{ request.user.get_full_name|default:request.user.username|default:"Max B." }}
+        </div>
+        <div class="sidebar-user-plan">Pro Plan</div>
+      </div>
+      <a href="#" class="sidebar-settings-link">⚙</a>
+    </div>
+  </div>
+
+</aside>

@@ -39,6 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'debug_toolbar',
+
+    'apps.alerts',
+    'apps.core',
+    'apps.crypto',
+    'apps.history',
+    'apps.main',
+    'apps.portfolio',
+    'apps.steam',
+    'apps.stocks',
+    'apps.users',
 ]
 
 MIDDLEWARE = [
