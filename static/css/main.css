@@ -595,7 +595,13 @@
 .footer-logo-text { font-family: var(--font-serif); font-size: 14px; }
 .footer-logo-text span { color: var(--green); }
 
-.footer-links { display: flex; gap: 28px; }
+.footer-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 28px;
+}
 
 .footer-link {
   font-size:  13px;

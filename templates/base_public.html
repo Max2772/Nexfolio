@@ -30,14 +30,15 @@
     </a>
 
     <div class="pub-nav-links">
-      <a href="/features" class="pub-nav-link">Features</a>
-      <a href="/pricing"  class="pub-nav-link">Pricing</a>
-      <a href="/docs"     class="pub-nav-link">Docs</a>
+      <a href="{% url "portfolio:portfolio" %}" class="pub-nav-link">Portfolio</a>
+      <a href="#"  class="pub-nav-link">Analytics</a>
+      <a href="{% url "users:profile" %}"  class="pub-nav-link">Profile</a>
+      <a href="https://github.com/Max2772/Nexfolio"     class="pub-nav-link">Docs</a>
     </div>
 
     <div class="pub-nav-actions">
-      <a href="/login"    class="btn btn-ghost">Log in</a>
-      <a href="/register" class="btn btn-primary">Get started →</a>
+      <a href="{% url "users:login" %}"    class="btn btn-ghost">Log in</a>
+      <a href="{% url "users:registration" %}" class="btn btn-primary">Get started →</a>
     </div>
   </nav>
 

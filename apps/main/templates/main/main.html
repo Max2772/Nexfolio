@@ -84,7 +84,8 @@
     </p>
 
     <div class="hero-cta">
-      <a href="{% url 'users:login' %}" class="btn btn-primary btn-lg">Start for free →</a>
+        <a href="{% url 'users:login' %}" class="btn btn-primary btn-lg">Start for free →</a>
+        <a href="{% url 'portfolio:portfolio' %}" class="btn btn-outline btn-lg">Open portfolio</a>
     </div>
 
     <div class="hero-social-proof">
@@ -280,7 +281,7 @@
     Free forever, open source.
   </p>
   <div class="cta-btns">
-    <a href="#" class="btn btn-primary btn-lg">Create free account →</a>
+    <a href="{% url 'users:registration' %}" class="btn btn-primary btn-lg">Create free account →</a>
     <a href="https://github.com/Max2772/Nexfolio" class="btn btn-ghost btn-lg">⭐ Star on GitHub</a>
   </div>
   <div class="cta-note">No credit card · MIT License · Self-host friendly</div>
@@ -294,8 +295,8 @@
     <div class="footer-logo-text">Nex<span>Folio</span></div>
   </div>
   <div class="footer-links">
-    <a href="/docs"    class="footer-link">Docs</a>
-    <a href="/privacy" class="footer-link">Privacy</a>
+    <a href="https://github.com/Max2772/Nexfolio"    class="footer-link">Docs</a>
+    <a href="https://github.com/Max2772/Nexfolio/blob/main/LICENSE" class="footer-link">License</a>
     <a href="https://github.com/Max2772" class="footer-link">GitHub</a>
     <a href="mailto:bib.maxim@gmail.com" class="footer-link">Contact</a>
   </div>
