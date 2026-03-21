@@ -51,44 +51,6 @@ function initProfileTabs() {
   }
 }
 
-/* ── Avatar file preview ──────────────────────────────────────────────── */
-/**
- * Клик на .profile-avatar → открывает скрытый <input type="file">.
- * После выбора файла показывает превью прямо на аватаре.
- */
-function initAvatarUpload() {
-  const avatarEl  = document.querySelector(".profile-avatar");
-  const fileInput = document.getElementById("avatarFileInput");
-
-  if (!avatarEl || !fileInput) return;
-
-  avatarEl.addEventListener("click", () => fileInput.click());
-
-  fileInput.addEventListener("change", () => {
-    const file = fileInput.files[0];
-    if (!file || !file.type.startsWith("image/")) return;
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      // Replace letter with img
-      const existing = avatarEl.querySelector("img");
-      if (existing) {
-        existing.src = e.target.result;
-      } else {
-        const img = document.createElement("img");
-        img.src    = e.target.result;
-        img.style.cssText = "width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:inherit;";
-        avatarEl.appendChild(img);
-      }
-
-      // Show save reminder
-      showToast("📸 Avatar selected — save to apply changes.");
-      markUnsaved();
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
 /* ── Character counters ───────────────────────────────────────────────── */
 /**
  * Для каждого .sfield-textarea / .sfield-input с data-maxlength

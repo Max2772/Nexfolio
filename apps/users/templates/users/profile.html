@@ -1,7 +1,7 @@
 {% extends "base_app.html" %}
 {% load static %}
 
-{% block title %}Profile — {{ request.user.username|default:"Max B." }} · Folio{% endblock %}
+{% block title %}NexFolio - Profile{% endblock %}
 
 {% block page_css %}
   <link rel="stylesheet" href="{% static 'css/profile.css' %}">
@@ -24,27 +24,35 @@
 
 {# ── Profile header ── #}
 <div class="profile-header anim-1">
-
-  {# Аватар (клик → выбор файла, логика в profile.js) #}
   <div class="profile-avatar-wrap">
     <div class="profile-avatar">
-      {{ request.user.username|first|upper|default:"M" }}
+        {% if request.user.image %}
+        <img src="{{ request.user.image.url }}"
+             alt="Аватар пользователя" class="img-fluid rounded-circle"
+             style="max-width: 150px;">
+        {% else %}
+            {{ request.user.username|first|upper }}
+        {% endif %}
+        <input type="file" class="form-control mt-3" id="id_image"
+               name="image"
+               accept="image/*">
+        {% if form.image.errors %}
+            <div class="form-error">{{ form.image.errors }}</div>
+        {% endif %}
+
       <div class="profile-avatar-overlay">📷</div>
     </div>
     <div class="profile-avatar-badge"></div>
-    {# Скрытый input для загрузки файла #}
-    <input type="file" id="avatarFileInput" accept="image/*" style="display:none">
   </div>
 
   {# Имя и бейджи #}
   <div class="profile-header-info">
     <div class="profile-display-name">
-      {{ request.user.get_full_name|default:"Max Bibishev" }}
+      {{ request.user.get_full_name }}
     </div>
-    <div class="profile-username">@{{ request.user.username|default:"max2772" }}</div>
+    <div class="profile-username">@{{ request.user.username }}</div>
     <div class="profile-badges">
-      <span class="profile-plan-badge">⭐ Pro Plan</span>
-      <span class="profile-since">Member since {{ request.user.date_joined|date:"M Y"|default:"Feb 2026" }}</span>
+      <span class="profile-plan-badge">Member since {{ request.user.date_joined|date:"M Y" }}</span>
     </div>
   </div>
 
@@ -109,7 +117,6 @@
 
     {# Основной контент #}
     <div>
-
       {# Личная информация #}
       <div class="settings-section">
         <div class="settings-section-header">
@@ -121,6 +128,7 @@
         <div class="settings-section-body">
           <form method="post" action="#" id="formOverview" class="settings-form">
             {% csrf_token %}
+
             <input type="hidden" name="section" value="personal">
 
             <div class="sfield-row" style="margin-bottom:20px;">
@@ -131,8 +139,8 @@
                   type="text"
                   id="id_first_name"
                   name="first_name"
-                  value="{{ request.user.first_name|default:'Max' }}"
-                  placeholder="Max"
+                  value="{{ request.user.first_name }}"
+                  placeholder="Ivan"
                 >
               </div>
               <div class="sfield">
@@ -142,8 +150,8 @@
                   type="text"
                   id="id_last_name"
                   name="last_name"
-                  value="{{ request.user.last_name|default:'Bibishev' }}"
-                  placeholder="Bibishev"
+                  value="{{ request.user.last_name }}"
+                  placeholder="Ivanov"
                 >
               </div>
             </div>
@@ -155,7 +163,7 @@
                 type="text"
                 id="id_username"
                 name="username"
-                value="{{ request.user.username|default:'max2772' }}"
+                value="{{ request.user.username }}"
               >
               <div class="sfield-hint">Your public @handle. Changing it may break shared links.</div>
             </div>
@@ -167,20 +175,8 @@
                 type="email"
                 id="id_email"
                 name="email"
-                value="{{ request.user.email|default:'bib.maxim@gmail.com' }}"
+                value="{{ request.user.email }}"
               >
-            </div>
-
-            <div class="sfield">
-              <label class="sfield-label" for="id_bio">Bio</label>
-              <textarea
-                class="sfield-input sfield-textarea"
-                id="id_bio"
-                name="bio"
-                placeholder="Tell other investors about yourself..."
-                data-maxlength="200"
-              >{{ profile.bio|default:'' }}</textarea>
-              <div class="sfield-counter">0 / 200</div>
             </div>
 
           </form>

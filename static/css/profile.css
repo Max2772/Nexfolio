@@ -122,12 +122,6 @@
   border:         1px solid rgba(0, 230, 118, 0.2);
 }
 
-.profile-since {
-  font-family: var(--font-mono);
-  font-size:   11px;
-  color:       var(--text-muted);
-}
-
 /* ── Header stats ── */
 .profile-header-stats {
   display: flex;

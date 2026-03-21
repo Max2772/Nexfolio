@@ -11,7 +11,7 @@
 
     <div class="sidebar-nav-label">Main</div>
 
-    <a href="{% url "portfolio:portfolio"  %}"
+    <a href="{% url 'portfolio:portfolio' %}"
        class="sidebar-nav-item {% if active_nav == 'portfolio' %}active{% endif %}">
       <span class="sidebar-nav-icon">🗂</span>
       Portfolio
@@ -25,7 +25,7 @@
 
     <div class="sidebar-nav-label">Market</div>
 
-    <a href="{% url "stocks:stocks"  %}"
+    <a href="{% url 'stocks:stocks' %}"
        class="sidebar-nav-item {% if active_nav == 'stocks' %}active{% endif %}">
       <span class="sidebar-nav-icon">💹</span>
       Stocks
@@ -63,18 +63,28 @@
   </nav>
 
   {# User block #}
-    <div class="sidebar-footer">
-        <a href="{% url 'users:profile' %}" class="sidebar-user">
-            <div class="sidebar-avatar">
-                {{ request.user.username|first|upper|default:"M" }}
-            </div>
-            <div class="sidebar-user-info">
-                <div class="sidebar-user-name">
-                    {{ request.user.get_full_name|default:request.user.username|default:"Max B." }}
-                </div>
-                <div class="sidebar-user-plan">Pro Plan</div>
-            </div>
-        </a>
+  <div class="sidebar-footer">
+
+    <div class="sidebar-user-row">
+
+      <a href="{% url 'users:profile' %}" class="sidebar-user">
+        <div class="sidebar-avatar">
+          {{ request.user.username|first|upper|default:"M" }}
+        </div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">
+            {{ request.user.get_full_name|default:request.user.username|default:"Max B." }}
+          </div>
+          <div class="sidebar-user-plan">Pro Plan</div>
+        </div>
+      </a>
+
+      <form method="post" action="{% url 'users:logout' %}" class="sidebar-logout-form">
+        {% csrf_token %}
+        <button type="submit" class="sidebar-logout-btn" title="Logout">⏻</button>
+      </form>
+
     </div>
+  </div>
 
 </aside>

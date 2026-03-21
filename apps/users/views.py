@@ -53,30 +53,29 @@ class UserRegistrationView(CreateView):
         context['title'] = 'NexFolio - Registration'
         return context
 
-# class UserProfileView(LoginRequiredMixin, UpdateView):
-class UserProfileView(TemplateView):
+class UserProfileView(LoginRequiredMixin, UpdateView):
     template_name = 'users/profile.html'
-    # form_class = ProfileForm
-    # success_url = reverse_lazy('user:profile')
-    #
-    # def get_object(self, queryset=None):
-    #     return self.request.user
-    #
-    # def form_valid(self, form):
-    #     messages.success(self.request, "Профиль успешно обновлен")
-    #     return super().form_valid(form)
-    #
-    # def form_invalid(self, form):
-    #     messages.success(self.request, "Произошла ошибка")
-    #     return super().form_valid(form)
+    form_class = ProfileForm
+    success_url = reverse_lazy('user:profile')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def form_valid(self, form):
+        messages.success(self.request, "Профиль успешно обновлен")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.success(self.request, "Произошла ошибка")
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Кабинет'
+        context['title'] = 'NexFolio - Profile'
         return context
 
 @login_required
 def logout(request):
     messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
     auth.logout(request)
-    return redirect(reverse('main:index'))
+    return redirect(reverse('main:main'))
