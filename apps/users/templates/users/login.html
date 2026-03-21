@@ -1,8 +1,6 @@
 {% extends "base_auth.html" %}
 {% load static %}
 
-{% block title %}NexFolio — Log in{% endblock %}
-
 
 {% block brand %}
 
@@ -31,11 +29,11 @@
       </div>
       <div class="auth-feature">
         <div class="auth-feature-dot"></div>
-        Price alerts checked every 5 minutes
+        Full transaction history
       </div>
       <div class="auth-feature">
         <div class="auth-feature-dot"></div>
-        Full transaction history
+        Price alerts
       </div>
     </div>
   </div>
@@ -70,7 +68,10 @@
 
   <form method="post" action="{% url 'users:login' %}" class="auth-form" novalidate>
     {% csrf_token %}
-    {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+
+    {% if next %}
+        <input type="hidden" name="next" value="{{ next }}">
+    {% endif %}
 
     <div class="form-group">
       <label class="form-label" for="{{ form.username.id_for_label }}">Username or Email</label>
@@ -128,6 +129,8 @@
     <button type="submit" class="btn btn-primary btn-submit">Log in →</button>
   </form>
 
+
+
   <div class="auth-divider">
     <div class="auth-divider-line"></div>
     <div class="auth-divider-text">or continue with</div>
@@ -135,8 +138,8 @@
   </div>
 
   <div class="oauth-row">
-    <button class="btn-oauth"><span class="btn-oauth-icon">🔵</span> Google</button>
-    <button class="btn-oauth"><span class="btn-oauth-icon">⚫</span> GitHub</button>
+    <button class="btn-oauth"><span class="btn-oauth-icon">⚪</span> Google</button>
+    <button class="btn-oauth"><span class="btn-oauth-icon">🔵</span> Telegram</button>
   </div>
 
 {% endblock %}

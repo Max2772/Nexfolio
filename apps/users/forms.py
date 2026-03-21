@@ -12,6 +12,10 @@ class UserLoginForm(AuthenticationForm):
     username = forms.CharField()
     password = forms.CharField()
 
+    error_messages = {
+        "invalid_login": "Invalid login or password"
+    }
+
 
 class UserRegistrationForm(UserCreationForm):
     class Meta:

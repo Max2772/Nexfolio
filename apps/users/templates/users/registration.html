@@ -27,10 +27,6 @@
       </div>
       <div class="auth-feature">
         <div class="auth-feature-dot"></div>
-        Up to 10 price alerts per user
-      </div>
-      <div class="auth-feature">
-        <div class="auth-feature-dot"></div>
         Interactive charts: 1W / 1M / 3M / 1Y
       </div>
       <div class="auth-feature">
@@ -69,8 +65,8 @@
 
   {# OAuth первым — как в Stripe/Linear #}
   <div class="oauth-row" style="margin-bottom:6px;">
-    <button class="btn-oauth"><span class="btn-oauth-icon">🔵</span> Google</button>
-    <button class="btn-oauth"><span class="btn-oauth-icon">⚫</span> GitHub</button>
+      <button class="btn-oauth"><span class="btn-oauth-icon">⚪</span> Google</button>
+      <button class="btn-oauth"><span class="btn-oauth-icon">🔵</span> Telegram</button>
   </div>
 
   <div class="auth-divider">
@@ -90,7 +86,7 @@
             id="{{ form.first_name.id_for_label }}"
             name="{{ form.first_name.html_name }}"
             value="{{ form.first_name.value|default:'' }}"
-            placeholder="Max"
+            placeholder="Ivan"
             autocomplete="given-name"
             required
           >
@@ -109,7 +105,7 @@
             id="{{ form.last_name.id_for_label }}"
             name="{{ form.last_name.html_name }}"
             value="{{ form.last_name.value|default:'' }}"
-            placeholder="B."
+            placeholder="Ivanov"
             autocomplete="family-name"
           >
         </div>
@@ -127,7 +123,7 @@
           id="{{ form.username.id_for_label }}"
           name="{{ form.username.html_name }}"
           value="{{ form.username.value|default:'' }}"
-          placeholder="max2772"
+          placeholder="ivan228"
           autocomplete="username"
           required
         >
@@ -149,7 +145,7 @@
           id="{{ form.email.id_for_label }}"
           name="{{ form.email.html_name }}"
           value="{{ form.email.value|default:'' }}"
-          placeholder="bib.maxim@gmail.com"
+          placeholder="example@gmail.com"
           autocomplete="email"
           required
         >
