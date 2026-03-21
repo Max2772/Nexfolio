@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,49 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}NexFolio{% endblock %}</title>
 
-  {# ── Google Fonts (те же, что в base_app и base_public) ── #}
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap"
         rel="stylesheet">
 
-  {# ── Базовые стили (tokens → base → auth) ── #}
   <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
   <link rel="stylesheet" href="{% static 'css/auth.css' %}">
-
+  {% block page_css %}{% endblock %}
 </head>
 <body>
 
-  {#
-    auth-shell — двухколоночный layout:
-      .auth-brand      — левая брендовая панель
-      .auth-form-panel — правая панель с формой
+<div class="auth-shell">
 
-    Каждый дочерний шаблон определяет оба блока.
-  #}
-  <div class="auth-shell">
+  {# ── Левая брендовая панель ── #}
+  <div class="auth-brand">
+    <div class="auth-brand-grid"></div>
 
-    {# Левая панель — переопределяется в каждом шаблоне #}
-    <div class="auth-brand">
-      <div class="auth-brand-grid"></div>
-      {% block brand %}{% endblock %}
-    </div>
+    {# Логотип — одинаковый на обеих страницах #}
+    <a href="{% url 'main:main' %}" class="auth-logo">
+      <div class="auth-logo-icon">📈</div>
+      <div class="auth-logo-text">Nex<span>Folio</span></div>
+    </a>
 
-    {# Правая панель с формой #}
-    <div class="auth-form-panel">
-      <div class="auth-form-wrap">
-        {% block form %}{% endblock %}
-      </div>
-    </div>
-
+    {# Уникальный контент: заголовок, фичи, social proof #}
+    {% block brand %}{% endblock %}
   </div>
 
-  {# Базовый JS (initTabs и др.) #}
-  <script src="{% static 'js/base.js' %}"></script>
+  {# ── Правая панель с формой ── #}
+  <div class="auth-form-panel">
+    <div class="auth-form-wrap">
+      {% block form %}{% endblock %}
+    </div>
+  </div>
 
-  {# Страничный JS #}
-  {% block page_js %}{% endblock %}
+</div>
+
+<script src="{% static 'js/base.js' %}"></script>
+<script src="{% static 'js/auth.js' %}"></script>
+{% block page_js %}{% endblock %}
 
 </body>
 </html>
