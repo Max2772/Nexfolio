@@ -67,7 +67,7 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def form_invalid(self, form):
         messages.success(self.request, "Произошла ошибка")
-        return super().form_valid(form)
+        return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
