@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('apps.users.urls', namespace='user')),
     path('', include('apps.portfolio.urls', namespace='portfolio')),
     path('', include('apps.stocks.urls', namespace='stocks')),
+    path('', include('apps.market.urls', namespace='market')),
 
 ]
 

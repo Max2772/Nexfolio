@@ -14,7 +14,9 @@
 
   <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/messages.css' %}">
   <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+
   {% block page_css %}{% endblock %}
 </head>
 
@@ -47,6 +49,9 @@
 
 <script src="{% static 'js/base.js' %}"></script>
 <script src="{% static 'js/auth.js' %}"></script>
+<script src="{% static 'js/messages.js' %}"></script>
+
+{% include "includes/messages.html" %}
 {% block page_js %}{% endblock %}
 
 </body>

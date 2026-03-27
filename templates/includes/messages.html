@@ -1,0 +1,17 @@
+{% if messages %}
+<div class="toast-container" id="toastContainer">
+  {% for message in messages %}
+    <div class="toast toast--{{ message.tags|default:'info' }}" role="alert">
+      <span class="toast__icon">
+        {% if message.tags == 'success' %}✓
+        {% elif message.tags == 'error' %}✕
+        {% elif message.tags == 'warning' %}⚠
+        {% else %}ℹ{% endif %}
+      </span>
+      <span class="toast__text">{{ message }}</span>
+      <button class="toast__close" type="button" aria-label="Close">✕</button>
+      <div class="toast__progress"></div>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
