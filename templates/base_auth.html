@@ -1,57 +1,42 @@
 {% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/messages.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock %}
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }}</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap"
-        rel="stylesheet">
+{% block content %}
+    <div class="auth-shell">
 
-  <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
-  <link rel="stylesheet" href="{% static 'css/messages.css' %}">
-  <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+      {# ── Левая брендовая панель ── #}
+      <div class="auth-brand">
+        <div class="auth-brand-grid"></div>
 
-  {% block page_css %}{% endblock %}
-</head>
+        {# Логотип — одинаковый на обеих страницах #}
+        <a href="{% url 'main:main' %}" class="auth-logo">
+          <div class="auth-logo-icon">📈</div>
+          <div class="auth-logo-text">Nex<span>Folio</span></div>
+        </a>
 
-<body>
+        {# Уникальный контент: заголовок, фичи, social proof #}
+        {% block brand %}{% endblock %}
+      </div>
 
-<div class="auth-shell">
+      {# ── Правая панель с формой ── #}
+      <div class="auth-form-panel">
+        <div class="auth-form-wrap">
+          {% block form %}{% endblock %}
+        </div>
+      </div>
 
-  {# ── Левая брендовая панель ── #}
-  <div class="auth-brand">
-    <div class="auth-brand-grid"></div>
-
-    {# Логотип — одинаковый на обеих страницах #}
-    <a href="{% url 'main:main' %}" class="auth-logo">
-      <div class="auth-logo-icon">📈</div>
-      <div class="auth-logo-text">Nex<span>Folio</span></div>
-    </a>
-
-    {# Уникальный контент: заголовок, фичи, social proof #}
-    {% block brand %}{% endblock %}
-  </div>
-
-  {# ── Правая панель с формой ── #}
-  <div class="auth-form-panel">
-    <div class="auth-form-wrap">
-      {% block form %}{% endblock %}
     </div>
-  </div>
+{% endblock %}
 
-</div>
-
-<script src="{% static 'js/base.js' %}"></script>
-<script src="{% static 'js/auth.js' %}"></script>
-<script src="{% static 'js/messages.js' %}"></script>
 
 {% include "includes/messages.html" %}
-{% block page_js %}{% endblock %}
-
-</body>
-</html>
+{% block js %}
+    <script src="{% static 'js/auth.js' %}"></script>
+    <script src="{% static 'js/messages.js' %}"></script>
+{% endblock %}

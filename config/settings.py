@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'apps.crypto',
     'apps.history',
     'apps.main',
-    'apps.market',
     'apps.portfolio',
     'apps.steam',
     'apps.stocks',

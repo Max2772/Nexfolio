@@ -30,7 +30,7 @@ class UserLoginView(LoginView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'NexFolio - Login'
+        context['title'] = 'Login'
         return context
 
 
@@ -50,7 +50,7 @@ class UserRegistrationView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'NexFolio - Registration'
+        context['title'] = 'Registration'
         return context
 
 class UserProfileView(LoginRequiredMixin, UpdateView):
@@ -71,7 +71,7 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'NexFolio · Profile'
+        context['title'] = 'Profile'
         return context
 
 @login_required

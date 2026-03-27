@@ -1,8 +1,8 @@
 {% extends "base_app.html" %}
+{% load static %}
 
-{% block title %}NexFolio - Profile{% endblock %}
-
-{% block page_css %}
+{% block css %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
@@ -19,8 +19,7 @@
 {% endblock %}
 
 
-{% block content %}
-
+{% block page_content %}
     {# ── Profile header ── #}
     <div class="profile-header anim-1">
         <div class="profile-avatar-wrap">
@@ -561,6 +560,6 @@
 
 
 {# ── JS ── #}
-{% block page_js %}
+{% block js %}
     <script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}

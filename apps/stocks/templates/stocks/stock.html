@@ -1,0 +1,278 @@
+{% extends "base_app.html" %}
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+{% endblock %}
+
+{# ── Top Bar ── #}
+{% block page_title %}{{ asset.ticker|default:"NVDA" }}{% endblock %}
+
+{% block page_meta %}
+  Portfolio →
+  <a href="#">Stocks</a> →
+  {{ asset.name|default:"NVIDIA Corporation" }}
+{% endblock %}
+
+{% block topbar_actions %}
+  <a href="#?asset={{ asset.ticker|default:'NVDA' }}" class="btn btn-ghost">🔔 Set Alert</a>
+  <a href="#?ticker={{ asset.ticker|default:'NVDA' }}"     class="btn btn-ghost">+ Add More</a>
+  <a href="#"                         class="btn btn-danger">Remove</a>
+{% endblock %}
+
+{# ── Page Content ── #}
+{% block page_content %}
+
+    {# ── Hero ── #}
+    <div class="asset-hero anim-1">
+      <div class="asset-hero-icon">{{ asset.icon|default:"N" }}</div>
+
+      <div style="flex:1">
+        <div class="serif" style="font-size:24px;letter-spacing:-0.4px;">
+          {{ asset.name|default:"NVIDIA Corporation" }}
+        </div>
+        <div class="hero-meta">
+          NASDAQ: {{ asset.ticker|default:"NVDA" }} · Technology · Semiconductors
+        </div>
+        <div class="hero-type-pill">📈 {{ asset.asset_type|default:"Stock" }}</div>
+      </div>
+
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <div class="hm-label">Current Price</div>
+          <div class="hm-val">${{ asset.current_price|default:"874.15" }}</div>
+          <div class="hm-sub up">▲ +2.34% today</div>
+        </div>
+        <div class="hero-metric">
+          <div class="hm-label">Your Value</div>
+          <div class="hm-val">${{ asset.current_value|default:"2,622.45" }}</div>
+          <div class="hm-sub muted">{{ asset.quantity|default:"3" }} shares held</div>
+        </div>
+        <div class="hero-metric">
+          <div class="hm-label">Total P&amp;L</div>
+          <div class="hm-val up">+${{ asset.pnl|default:"471.90" }}</div>
+          <div class="hm-sub up">▲ +21.97%</div>
+        </div>
+      </div>
+    </div>
+
+
+    {# ── Метрики (3 карточки) ── #}
+    <div class="metric-row">
+
+      <div class="metric-card anim-2">
+        <div class="mc-label">Avg Buy Price</div>
+        <div class="mc-val">${{ asset.avg_price|default:"714.18" }}</div>
+        <div class="mc-sub">First bought {{ asset.first_bought|default:"Feb 4, 2026" }}</div>
+        <span class="badge badge-up" style="margin-top:10px;display:inline-flex;">
+          Current: +22.4% above avg
+        </span>
+      </div>
+
+      <div class="metric-card anim-3">
+        <div class="mc-label">52-Week Range</div>
+        <div class="mc-val" style="font-size:15px;line-height:1.4;">
+          ${{ asset.week52_low|default:"461.20" }} — ${{ asset.week52_high|default:"974.00" }}
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-track">
+            <div class="prog-fill" style="width:{{ asset.range_pct|default:83 }}%"></div>
+          </div>
+          <div class="prog-labels">
+            <span class="prog-lbl">${{ asset.week52_low|default:"461" }}</span>
+            <span class="prog-lbl dim">Now: ${{ asset.current_price|default:"874" }}</span>
+            <span class="prog-lbl">${{ asset.week52_high|default:"974" }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="metric-card anim-4">
+        <div class="mc-label">Unrealised Gain</div>
+        <div class="mc-val up">+${{ asset.pnl|default:"471.90" }}</div>
+        <div class="mc-sub">On {{ asset.quantity|default:"3.00" }} shares</div>
+        <span class="badge badge-up" style="margin-top:10px;display:inline-flex;">
+          ▲ ROI: +21.97%
+        </span>
+      </div>
+
+    </div>
+
+
+    {# ── График цены + ключевые метрики ── #}
+    <div class="grid-main">
+
+      <div class="card anim-5">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Price History</div>
+            <div class="card-subtitle">{{ asset.ticker|default:"NVDA" }} market price</div>
+          </div>
+          <div class="tabs">
+            <div class="tab">1W</div>
+            <div class="tab active">1M</div>
+            <div class="tab">3M</div>
+            <div class="tab">1Y</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="height:240px;position:relative;">
+            {# В Django данные передаются через data-атрибут и читаются portfolio.js #}
+            <canvas id="priceChart"
+                    data-prices="{{ price_history|join:',' }}"
+                    data-avg-buy="{{ asset.avg_price|default:714.18 }}">
+            </canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-stack">
+
+        {# Key metrics #}
+        <div class="card anim-5">
+          <div class="card-header"><div class="card-title">Key Metrics</div></div>
+          <div class="card-body" style="padding-top:4px;">
+            <div class="km-row">
+              <div class="km-left"><div class="km-label">Market Cap</div><div class="km-val">$2.15T</div></div>
+              <span class="badge badge-blue">Mega cap</span>
+            </div>
+            <div class="km-row">
+              <div class="km-left"><div class="km-label">P/E Ratio</div><div class="km-val">56.4</div></div>
+              <span class="badge badge-warn">High</span>
+            </div>
+            <div class="km-row">
+              <div class="km-left"><div class="km-label">EPS (TTM)</div><div class="km-val">$15.50</div></div>
+              <span class="badge badge-up">+148% YoY</span>
+            </div>
+            <div class="km-row">
+              <div class="km-left"><div class="km-label">Volume</div><div class="km-val">42.1M</div></div>
+              <span class="muted" style="font-family:var(--font-mono);font-size:11px;">avg 38.2M</span>
+            </div>
+            <div class="km-row">
+              <div class="km-left"><div class="km-label">Beta (1Y)</div><div class="km-val">1.67</div></div>
+              <span class="badge badge-warn">High vol.</span>
+            </div>
+          </div>
+        </div>
+
+        {# Position summary #}
+        <div class="card">
+          <div class="card-header"><div class="card-title">Your Position</div></div>
+          <div class="card-body" style="padding-top:4px;display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;justify-content:space-between;">
+              <span class="muted" style="font-size:13px;">Shares held</span>
+              <span class="mono" style="font-size:14px;">{{ asset.quantity|default:"3.00" }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span class="muted" style="font-size:13px;">Cost basis</span>
+              <span class="mono" style="font-size:14px;">${{ asset.cost_basis|default:"2,142.54" }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span class="muted" style="font-size:13px;">Current value</span>
+              <span class="mono up" style="font-size:14px;">${{ asset.current_value|default:"2,622.45" }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span class="muted" style="font-size:13px;">% of portfolio</span>
+              <span class="mono" style="font-size:14px;">{{ asset.portfolio_pct|default:"18.4" }}%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    {# ── P&L chart + история транзакций ── #}
+    <div class="chart-row">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Profit &amp; Loss Over Time</div>
+          <div class="card-subtitle">Unrealised gain since purchase</div>
+        </div>
+        <div class="card-body">
+          <div style="height:190px;position:relative;">
+            <canvas id="pnlChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Transaction History</div></div>
+        <div class="card-body" style="padding-top:14px;">
+          <table class="tx-table">
+            <thead>
+              <tr><th>Date</th><th>Type</th><th>Qty</th><th>Price</th><th>Total</th></tr>
+            </thead>
+            <tbody>
+              {% for tx in transactions %}
+              <tr>
+                <td><div class="tx-date">{{ tx.date|date:"d M Y" }}</div></td>
+                <td><span class="tx-badge {% if tx.action == 'buy' %}buy{% else %}sell{% endif %}">
+                  {% if tx.action == 'buy' %}↑ Buy{% else %}↓ Sell{% endif %}
+                </span></td>
+                <td>{{ tx.quantity }}</td>
+                <td>${{ tx.price }}</td>
+                <td>${{ tx.total }}</td>
+              </tr>
+              {% empty %}
+              {# Fallback #}
+              <tr>
+                <td><div class="tx-date">04 Feb 2026</div></td>
+                <td><span class="tx-badge buy">↑ Buy</span></td>
+                <td>2</td><td>$710.00</td><td>$1,420.00</td>
+              </tr>
+              <tr>
+                <td><div class="tx-date">10 Feb 2026</div></td>
+                <td><span class="tx-badge buy">↑ Buy</span></td>
+                <td>1</td><td>$722.54</td><td>$722.54</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <div class="position-summary">
+            <div class="pos-row"><span class="pos-label">Total invested</span><span class="pos-val">${{ asset.cost_basis|default:"2,142.54" }}</span></div>
+            <div class="pos-row"><span class="pos-label">Current value</span><span class="pos-val up">${{ asset.current_value|default:"2,622.45" }}</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    {# ── Похожие активы ── #}
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">You might also track</div>
+        <span class="muted" style="font-size:12px">Similar to {{ asset.ticker|default:"NVDA" }}</span>
+      </div>
+      <div class="card-body">
+        <div class="related-grid">
+          {% for r in related_assets %}
+          <a href="#" class="related-card">
+            <div class="related-ticker">{{ r.ticker }}</div>
+            <div class="related-name">{{ r.name }}</div>
+            <div class="related-price">${{ r.price }}</div>
+            <div class="related-delta {% if r.positive %}up{% else %}down{% endif %}">
+              {% if r.positive %}▲{% else %}▼{% endif %} {{ r.delta }}
+            </div>
+          </a>
+          {% empty %}
+          {# Fallback #}
+          <div class="related-card"><div class="related-ticker">AMD</div><div class="related-name">Advanced Micro Devices</div><div class="related-price">$202.05</div><div class="related-delta up">▲ +1.2%</div></div>
+          <div class="related-card"><div class="related-ticker">INTC</div><div class="related-name">Intel Corporation</div><div class="related-price">$22.80</div><div class="related-delta down">▼ −0.8%</div></div>
+          <div class="related-card"><div class="related-ticker">QCOM</div><div class="related-name">Qualcomm Inc.</div><div class="related-price">$168.42</div><div class="related-delta up">▲ +0.5%</div></div>
+          <div class="related-card"><div class="related-ticker">TSM</div><div class="related-name">Taiwan Semiconductor</div><div class="related-price">$175.90</div><div class="related-delta up">▲ +2.1%</div></div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+
+{# ── JS ── #}
+{% block js %}
+  <script src="{% static 'js/portfolio.js' %}"></script>
+{% endblock %}
