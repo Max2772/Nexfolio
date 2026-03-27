@@ -71,7 +71,7 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'NexFolio - Profile'
+        context['title'] = 'NexFolio · Profile'
         return context
 
 @login_required

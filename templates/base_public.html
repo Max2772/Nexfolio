@@ -1,32 +1,12 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
+{% endblock %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }}</title>
-
-  {# ── Google Fonts ── #}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap"
-        rel="stylesheet">
-
-  {# ── Base stylesheets ── #}
-  <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
-
-
-  {# ── Page-specific CSS ── #}
-  {% block page_css %}{% endblock %}
-
-</head>
-
-<body>
-
-  {# ── Публичный navbar ── #}
+{% block navbar %}
+ {# ── Public navbar ── #}
   <nav class="pub-nav">
     <a href="/" class="pub-nav-logo">
       <div class="pub-nav-logo-icon">📈</div>
@@ -45,14 +25,4 @@
       <a href="{% url "users:registration" %}" class="btn btn-primary">Get started →</a>
     </div>
   </nav>
-
-  {# ── Контент ── #}
-  <div class="pub-content">
-    {% block content %}{% endblock %}
-  </div>
-
-  {# ── Page-specific JS ── #}
-  {% block page_js %}{% endblock %}
-
-</body>
-</html>
+{% endblock %}
